@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Catalogue des Cours</h2>
+
+    <div class="d-flex align-items-center gap-3">
+      <!-- S'affiche UNIQUEMENT si l'utilisateur est admin -->
+      <a *ngIf="isAdmin" routerLink="/add-course" class="btn btn-success btn-sm">
+        + Ajouter un cours
+      </a>
+      
+
+      <span class="badge" [ngClass]="isAdmin ? 'bg-primary' : 'bg-success'">
+        Mode : {{ isAdmin ? 'Administrateur' : 'Étudiant (Lecture seule)' }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-4 mb-4" *ngFor="let course of courses">
+      <div class="card shadow-sm h-100 p-3">
+        <!-- Clic sur le titre -> entre directement dans les tutoriels du cours -->
+        <h5 class="card-title text-primary" style="cursor: pointer;" (click)="openCourse(course.id)">
+          {{ course.title }}
+        </h5>
+        <p class="card-text text-muted">{{ course.description }}</p>
+        
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <button class="btn btn-primary btn-sm" (click)="openCourse(course.id)">
+            Accéder aux tutoriels
+          </button>
+          
+          <!-- Le bouton Supprimer s'affiche uniquement si isAdmin est true -->
+          <button *ngIf="isAdmin" class="btn btn-danger btn-sm" (click)="deleteCourse(course.id)">
+            Supprimer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

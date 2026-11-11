@@ -1,0 +1,81 @@
+<div *ngIf="currentTutorial; else noTutorial">
+  <h4>Tutorial</h4>
+  <div class="edit-form">
+    <form>
+      <div class="form-group mb-3">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentTutorial.title"
+          name="title"
+          [disabled]="!isAdmin"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentTutorial.description"
+          name="description"
+          [disabled]="!isAdmin"
+        />
+      </div>
+
+      <!-- Affichage du lien PDF s'il existe -->
+      <div class="mb-3" *ngIf="currentTutorial.pdf_url">
+        <label><strong>Document PDF :</strong></label>
+        <div>
+          <a [href]="currentTutorial.pdf_url" target="_blank" class="btn btn-sm btn-outline-danger">
+            📄 Ouvrir / Télécharger le PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label><strong>Status:</strong></label>
+        {{ currentTutorial.published ? "Published" : "Pending" }}
+      </div>
+    </form>
+
+    <!-- Visible uniquement pour l'administrateur -->
+    <div *ngIf="isAdmin">
+      <button
+    class="badge bg-primary me-2"
+    *ngIf="currentTutorial.published"
+    (click)="updatePublished(false)"
+  >
+    UnPublish
+  </button>
+  <button
+    class="badge bg-primary me-2"
+    *ngIf="!currentTutorial.published"
+    (click)="updatePublished(true)"
+  >
+    Publish
+  </button>
+
+  <button class="badge bg-danger me-2" (click)="deleteTutorial()">
+    Delete
+  </button>
+
+  <button type="submit" class="badge bg-success" (click)="updateTutorial()">
+    Update
+  </button>
+</div>
+
+<p>{{ message }}</p>
+
+    
+  </div>
+</div>
+
+<ng-template #noTutorial>
+  <div *ngIf="!viewMode">
+    <br />
+    <p>Please click on a Tutorial...</p>
+  </div>
+</ng-template>

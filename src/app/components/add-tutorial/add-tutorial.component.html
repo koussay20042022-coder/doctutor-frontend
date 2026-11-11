@@ -1,0 +1,45 @@
+<div class="submit-form" style="max-width: 400px; margin: auto;">
+  <div *ngIf="!submitted">
+    <div class="form-group mb-3">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        required
+        [(ngModel)]="tutorial.title"
+        name="title"
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="description">Description</label>
+      <input
+        class="form-control"
+        id="description"
+        required
+        [(ngModel)]="tutorial.description"
+        name="description"
+      />
+    </div>
+
+    <!-- Nouveau champ pour le PDF -->
+    <div class="form-group mb-3">
+      <label for="pdfFile">Fichier PDF</label>
+      <input
+        type="file"
+        class="form-control"
+        id="pdfFile"
+        accept=".pdf"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+
+    <button type="button" class="btn btn-success" (click)="saveTutorial()">Submit</button>
+  </div>
+
+  <div *ngIf="submitted">
+    <h4>Tutorial was submitted successfully!</h4>
+    <button class="btn btn-success" (click)="newTutorial()">Add</button>
+  </div>
+</div>

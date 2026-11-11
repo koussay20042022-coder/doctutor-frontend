@@ -1,0 +1,31 @@
+<div>
+  <!-- La navbar s'affiche UNIQUEMENT si on n'est PAS sur la page d'accueil de choix de rôle ('/') -->
+  <nav *ngIf="router.url !== '/'" class="navbar navbar-expand navbar-dark bg-dark px-3 justify-content-between">
+    <div class="d-flex align-items-center">
+      <a routerLink="/home" class="navbar-brand font-weight-bold">DocTutor</a>
+      
+      <div class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/home" class="nav-link" routerLinkActive="active">Accueil / Cours</a>
+        </li>
+        
+        <!-- Le lien "Ajouter" s'affiche UNIQUEMENT pour l'administrateur -->
+        <li class="nav-item" *ngIf="isAdmin">
+          <a routerLink="/add-course" class="nav-link" routerLinkActive="active">Ajouter</a>
+        </li>
+      </div>
+    </div>
+
+    <!-- Bouton pour changer de rôle / se déconnecter -->
+    <div>
+      <button class="btn btn-outline-light btn-sm" (click)="logout()">
+        Changer de rôle
+      </button>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

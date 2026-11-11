@@ -1,0 +1,92 @@
+<div class="container-fluid px-0">
+  <!-- Hero Section (Inspirée de votre modèle) -->
+  <div class="bg-light py-5 mb-5 border-bottom">
+    <div class="container py-4">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <span class="text-uppercase text-danger font-weight-bold tracking-wide small">Plateforme Éducative & Collaborative</span>
+          <h1 class="display-4 font-weight-bold text-dark mt-2 mb-3" style="color: #0c2340 !important;">
+            Simplifiez vos cours avec <strong>DocTutor</strong>
+          </h1>
+          <p class="lead text-muted mb-4">
+            Une transmission fluide des connaissances, des tutoriels structurés et un accès par rôle sécurisé pour les étudiants et les administrateurs.
+          </p>
+        </div>
+        <div class="col-lg-6 text-center">
+          <!-- Illustration ou badge moderne -->
+          <div class="p-4 bg-white shadow-sm rounded-lg border">
+            <h4 class="text-primary mb-2">🎓 Espace d'Apprentissage SUP'COM</h4>
+            <p class="text-muted small mb-0">Sélectionnez votre profil ci-dessous pour accéder aux fonctionnalités de la plateforme.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section de Sélection des Rôles -->
+  <div class="container pb-5 mb-5">
+    <div class="row justify-content-center">
+      
+      <!-- Carte Étudiant -->
+      <div class="col-md-5 mb-4">
+        <div class="card shadow-lg h-100 border-0 rounded-lg p-4 text-center transition-card">
+          <div class="card-body d-flex flex-column align-items-center">
+            <div class="rounded-circle bg-success-subtle p-3 mb-3 text-success" style="font-size: 2.5rem; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+              📖
+            </div>
+            <h3 class="card-title text-dark font-weight-bold mb-3">Espace Étudiant</h3>
+            <p class="card-text text-muted mb-4">
+              Consultez librement le catalogue des cours et accédez aux tutoriels et documents PDF publiés par vos enseignants.
+            </p>
+            <button class="btn btn-success btn-lg w-100 mt-auto py-3 font-weight-bold shadow-sm" (click)="selectStudentRole()">
+              Entrer en tant qu'Étudiant
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte Administrateur -->
+      <div class="col-md-5 mb-4">
+        <div class="card shadow-lg h-100 border-0 rounded-lg p-4 text-center transition-card">
+          <div class="card-body d-flex flex-column align-items-center w-100">
+            <div class="rounded-circle bg-primary-subtle p-3 mb-3 text-primary" style="font-size: 2.5rem; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+              ⚙️
+            </div>
+            <h3 class="card-title text-dark font-weight-bold mb-3">Espace Administrateur</h3>
+            <p class="card-text text-muted mb-3">
+              Gérez les cours, publiez, modifiez ou supprimez des tutoriels et des fichiers PDF (Code secret requis).
+            </p>
+
+            <div class="form-group w-100 mb-3">
+              <input 
+                type="password" 
+                class="form-control form-control-lg text-center" 
+                placeholder="Code secret (ex: 1234)" 
+                [value]="adminCode"
+                (input)="adminCode = $any($event.target).value"
+                (keyup.enter)="verifyAdminCode()"
+              />
+            </div>
+
+            <div *ngIf="errorMessage" class="alert alert-danger w-100 py-2 small mb-3">
+              {{ errorMessage }}
+            </div>
+
+            <button class="btn btn-primary btn-lg w-100 mt-auto py-3 font-weight-bold shadow-sm" (click)="verifyAdminCode()">
+              Connexion Admin
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer stylisé (inspiré du modèle) -->
+  <footer class="bg-light py-4 border-top text-center text-muted">
+    <div class="container">
+      <p class="mb-0 small">Projet Web - SUP'COM | DocTutor © 2026 - Tous droits réservés</p>
+    </div>
+  </footer>
+</div>
+
